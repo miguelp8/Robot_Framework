@@ -3,4 +3,4 @@ Este script faz login no site https://opensource-demo.orangehrmlive.com/web/inde
 Também apresenta variáveis na consola.
 
 # practice_robot 
-Este script preenche os campos do site https://testautomationpractice.blogspot.com/, que vão desde inputs de texto, a selecionar checkboxs, inserir datas e validar texto que aparece na página.
+Este script preenche os campos do site https://testautomationpractice.blogspot.com/, que consiste em inserir texto, selecionar checkboxs e botões, inserir datas e validar texto que aparece na página.
