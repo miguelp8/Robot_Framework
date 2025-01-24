@@ -39,3 +39,14 @@ Preencher todos os campos
     Click Button                //button[@class="submit-btn"]
     Element Text Should Be      //div[@id="result"]         You selected a range of 7 days.
     Sleep                       5
+    Close Browser
+
+Upload Files
+    Aceder ao site
+    Choose File                 //input[@id="singleFileInput"]          C:\\Noesis_Academy\\Robot_Framework\\test_1.pdf
+    Click Button                //button[text()="Upload Single File"]
+    Choose File                 //input[@id="multipleFilesInput"]       C:\\Noesis_Academy\\Robot_Framework\\test_1.pdf
+    Click Button                //button[text()="Upload Multiple Files"]
+    Capture Page Screenshot
+    Sleep                       3
+    Close Browser
