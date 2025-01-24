@@ -1,12 +1,37 @@
 *** Settings ***
 Library  SeleniumLibrary
 
-*** Test Cases ***
-Aceder a um site 
-    Open Browser  https://opensource-demo.orangehrmlive.com/web/index.php/auth/login  Chrome
+*** Variables ***
+${login}            Admin
+${password}         admin123
+${simples}          Noesis Academy
+@{Dias_da_semana}   Domingo  Segunda  Terça  Quarta  Quinta  Sexta  Sabado
+&{Cadastro}         nome=Miguel  email=miguel@noesis.pt  mae=Natalia
+
+*** Keywords ***
+Aceder à aplicação
+    Open Browser  https://opensource-demo.orangehrmlive.com/web/index.php/auth/login  chrome
+    Maximize Browser Window
+    Wait Until Element Is Enabled  xpath://input[@name="username"]  20
+    Input Text    xpath://input[@name="username"]  ${login}
+    Input Text    xpath://input[@name="password"]  ${password}
+    Click Button  xpath://button[text()=" Login "]  
     Sleep         5
-    Input Text    //input[@name="username"]  Admin
-    Input Text    //input[@name="password"]  admin123
-    Click Button  //button[@class="oxd-button oxd-button--medium oxd-button--main orangehrm-login-button"]
-    Sleep         10
-    Close Browser
+    Page Should Contain Image       //img[@src="/web/images/orange.png?v=1721393199309"]
+    Capture Page Screenshot
+
+
+*** Test Cases ***
+Login com user e password correta
+    [Tags]  Login
+    Aceder à aplicação
+    Click Link                      //a[@href="/web/index.php/admin/viewAdminModule"]
+    Sleep                           3
+    Element Should Be Visible       //h6[text()="User Management"]
+
+
+Analisar Variaveis
+    [Tags]  var 
+    Log To Console      ${simples}
+    Log To Console      ${Dias_da_semana[6]}
+    Log To Console      ${Cadastro.mae}
