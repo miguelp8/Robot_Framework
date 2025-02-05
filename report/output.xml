@@ -1,116 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<robot generator="Robot 7.2 (Python 3.13.1 on win32)" generated="2025-01-24T09:58:30.865484" rpa="false" schemaversion="5">
+<robot generator="Robot 7.2 (Python 3.13.1 on win32)" generated="2025-02-05T10:24:51.223695" rpa="false" schemaversion="5">
 <suite id="s1" name="Start" source="C:\Noesis_Academy\Robot_Framework\start.robot">
-<test id="s1-t1" name="Login com user e password correta" line="25">
-<kw name="Aceder à aplicação">
-<kw name="Open Browser" owner="SeleniumLibrary">
-<msg time="2025-01-24T09:58:31.293846" level="INFO">Opening browser 'chrome' to base url 'https://opensource-demo.orangehrmlive.com/web/index.php/auth/login'.</msg>
-<arg>https://opensource-demo.orangehrmlive.com/web/index.php/auth/login</arg>
-<arg>chrome</arg>
-<doc>Opens a new browser instance to the optional ``url``.</doc>
-<status status="PASS" start="2025-01-24T09:58:31.293599" elapsed="6.706018"/>
-</kw>
-<kw name="Maximize Browser Window" owner="SeleniumLibrary">
-<doc>Maximizes current browser window.</doc>
-<status status="PASS" start="2025-01-24T09:58:38.000117" elapsed="0.053391"/>
-</kw>
-<kw name="Wait Until Element Is Enabled" owner="SeleniumLibrary">
-<arg>xpath://input[@name="username"]</arg>
-<arg>20</arg>
-<doc>Waits until the element ``locator`` is enabled.</doc>
-<status status="PASS" start="2025-01-24T09:58:38.054099" elapsed="0.616522"/>
-</kw>
-<kw name="Input Text" owner="SeleniumLibrary">
-<msg time="2025-01-24T09:58:38.671382" level="INFO">Typing text 'Admin' into text field 'xpath://input[@name="username"]'.</msg>
-<arg>xpath://input[@name="username"]</arg>
-<arg>${login}</arg>
-<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
-<status status="PASS" start="2025-01-24T09:58:38.670936" elapsed="0.185900"/>
-</kw>
-<kw name="Input Text" owner="SeleniumLibrary">
-<msg time="2025-01-24T09:58:38.857880" level="INFO">Typing text 'admin123' into text field 'xpath://input[@name="password"]'.</msg>
-<arg>xpath://input[@name="password"]</arg>
-<arg>${password}</arg>
-<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
-<status status="PASS" start="2025-01-24T09:58:38.857308" elapsed="0.280128"/>
-</kw>
-<kw name="Click Button" owner="SeleniumLibrary">
-<msg time="2025-01-24T09:58:39.138673" level="INFO">Clicking button 'xpath://button[text()=" Login "]'.</msg>
-<arg>xpath://button[text()=" Login "]</arg>
-<doc>Clicks the button identified by ``locator``.</doc>
-<status status="PASS" start="2025-01-24T09:58:39.137873" elapsed="0.189151"/>
-</kw>
-<kw name="Sleep" owner="BuiltIn">
-<msg time="2025-01-24T09:58:44.328726" level="INFO">Slept 5 seconds.</msg>
-<arg>5</arg>
-<doc>Pauses the test executed for the given time.</doc>
-<status status="PASS" start="2025-01-24T09:58:39.327246" elapsed="5.003068"/>
-</kw>
-<kw name="Page Should Contain Image" owner="SeleniumLibrary">
-<msg time="2025-01-24T09:58:44.356949" level="INFO">Current page contains image '//img[@src="/web/images/orange.png?v=1721393199309"]'.</msg>
-<arg>//img[@src="/web/images/orange.png?v=1721393199309"]</arg>
-<doc>Verifies image identified by ``locator`` is found from current page.</doc>
-<status status="PASS" start="2025-01-24T09:58:44.331079" elapsed="0.026070"/>
-</kw>
-<kw name="Capture Page Screenshot" owner="SeleniumLibrary">
-<msg time="2025-01-24T09:58:44.584985" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-2.png"&gt;&lt;img src="selenium-screenshot-2.png" width="800px"&gt;&lt;/a&gt;</msg>
-<doc>Takes a screenshot of the current page and embeds it into a log file.</doc>
-<status status="PASS" start="2025-01-24T09:58:44.357568" elapsed="0.227687"/>
-</kw>
-<status status="PASS" start="2025-01-24T09:58:31.292619" elapsed="13.293039"/>
-</kw>
-<kw name="Click Link" owner="SeleniumLibrary">
-<msg time="2025-01-24T09:58:44.586623" level="INFO">Clicking link '//a[@href="/web/index.php/admin/viewAdminModule"]'.</msg>
-<arg>//a[@href="/web/index.php/admin/viewAdminModule"]</arg>
-<doc>Clicks a link identified by ``locator``.</doc>
-<status status="PASS" start="2025-01-24T09:58:44.586325" elapsed="1.498039"/>
-</kw>
-<kw name="Sleep" owner="BuiltIn">
-<msg time="2025-01-24T09:58:49.086143" level="INFO">Slept 3 seconds.</msg>
-<arg>3</arg>
-<doc>Pauses the test executed for the given time.</doc>
-<status status="PASS" start="2025-01-24T09:58:46.085005" elapsed="3.001515"/>
-</kw>
-<kw name="Element Should Be Visible" owner="SeleniumLibrary">
-<msg time="2025-01-24T09:58:49.160141" level="INFO">Element '//h6[text()="User Management"]' is displayed.</msg>
-<arg>//h6[text()="User Management"]</arg>
-<doc>Verifies that the element identified by ``locator`` is visible.</doc>
-<status status="PASS" start="2025-01-24T09:58:49.087812" elapsed="0.072449"/>
-</kw>
-<tag>Login</tag>
-<status status="PASS" start="2025-01-24T09:58:31.291673" elapsed="17.869019"/>
-</test>
-<test id="s1-t2" name="Analisar Variaveis" line="33">
+<test id="s1-t1" name="Analisar Variaveis" line="33">
 <kw name="Log To Console" owner="BuiltIn">
 <arg>${simples}</arg>
 <doc>Logs the given message to the console.</doc>
-<status status="PASS" start="2025-01-24T09:58:49.162280" elapsed="0.000399"/>
+<status status="PASS" start="2025-02-05T10:24:53.453639" elapsed="0.015379"/>
 </kw>
 <kw name="Log To Console" owner="BuiltIn">
 <arg>${Dias_da_semana[6]}</arg>
 <doc>Logs the given message to the console.</doc>
-<status status="PASS" start="2025-01-24T09:58:49.162984" elapsed="0.000765"/>
+<status status="PASS" start="2025-02-05T10:24:53.471272" elapsed="0.017437"/>
 </kw>
 <kw name="Log To Console" owner="BuiltIn">
 <arg>${Cadastro.mae}</arg>
 <doc>Logs the given message to the console.</doc>
-<status status="PASS" start="2025-01-24T09:58:49.164060" elapsed="0.000679"/>
+<status status="PASS" start="2025-02-05T10:24:53.496093" elapsed="0.006289"/>
 </kw>
 <tag>var</tag>
-<status status="PASS" start="2025-01-24T09:58:49.161708" elapsed="0.003352"/>
+<status status="PASS" start="2025-02-05T10:24:53.447438" elapsed="0.056347"/>
 </test>
-<status status="PASS" start="2025-01-24T09:58:30.869268" elapsed="18.297285"/>
+<status status="PASS" start="2025-02-05T10:24:51.235954" elapsed="2.282488"/>
 </suite>
 <statistics>
 <total>
-<stat pass="2" fail="0" skip="0">All Tests</stat>
+<stat pass="1" fail="0" skip="0">All Tests</stat>
 </total>
 <tag>
-<stat pass="1" fail="0" skip="0">Login</stat>
 <stat pass="1" fail="0" skip="0">var</stat>
 </tag>
 <suite>
-<stat name="Start" id="s1" pass="2" fail="0" skip="0">Start</stat>
+<stat name="Start" id="s1" pass="1" fail="0" skip="0">Start</stat>
 </suite>
 </statistics>
 <errors>

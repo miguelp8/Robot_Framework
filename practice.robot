@@ -1,20 +1,18 @@
 *** Settings ***
 Library  SeleniumLibrary
+Library  DateTime
+
 
 *** Variables ***
 ${url}          https://testautomationpractice.blogspot.com/
-${name}         Pedro
-${email}        pedro@email.com
+${name}         Noesis Academy
+${email}        noesis@email.pt
 ${phone}        967777896
 ${adress}       Rua da Noesis
 ${username}     standard_user 
 ${password}     secret_sauce
 
 *** Keywords ***
-Select Radio Button 
-    [Arguments]     ${locator}
-    Click Element   ${locator}
-
 Login site saucedemo
     Open Browser            https://www.saucedemo.com/  chrome
     Maximize Browser Window
@@ -37,17 +35,20 @@ Preencher todos os campos
     Input Text                  //input[@id="email"]        ${email}
     Input Text                  //input[@id="phone"]        ${phone}
     Input Text                  //textarea[@id="textarea"]  ${adress}
-    Select Radio Button         //input[@id="male"]
+    Select Radio Button         gender  male
     Select Checkbox             //input[@id="sunday"]
     Select Checkbox             //input[@id="friday"]
     Select Checkbox             //input[@id="wednesday"]
     Select From List By Value   //select[@id="country"]     canada
-    Select From List By Value   //select[@id="colors"]      red
-    Select From List By Value   //select[@id="animals"]     lion
-    Click Element               //input[@id="datepicker"]
-    Click Element               //a[text()="24"]
-    Click Element               //input[@id="txtDate"]
-    Click Element               //a[text()="31"]
+    Select From List By Index   //select[@id="colors"]      2   3
+    Select From List By Label   //select[@id="animals"]     Deer  Elephant  
+    
+    ${TODAY}   Get Current Date    result_format=%m/%d/%Y
+    Input Text                  //input[@id="datepicker"]       ${TODAY}
+    Click Element               //input[@name="SelectedDate"]
+    Select From List By Value   //select[@data-handler="selectMonth"]      5
+    Select From List By Value   //select[@data-handler="selectYear"]       2015
+    Click Element               //a[@data-date="30"]
     Input Text                  //input[@id="start-date"]   01/24/2025
     Input Text                  //input[@id="end-date"]     01/31/2025
     Click Button                //button[@class="submit-btn"]
@@ -83,4 +84,11 @@ Eliminar um produto do carrinho no site saucedemo
     Sleep               3
     Close Browser
 
+Alerts e Popups
+    [Tags]                  alertas
+    Open Browser            https://testautomationpractice.blogspot.com/  chrome
+    Maximize Browser Window 
+    Click Button            //button[@id="alertBtn"]  #Como valido o texto que aparece no popup??
+    Sleep                   5
+    
 
