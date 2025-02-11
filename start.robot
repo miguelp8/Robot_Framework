@@ -16,7 +16,6 @@ Aceder à aplicação
     Input Text    xpath://input[@name="username"]  ${login}
     Input Text    xpath://input[@name="password"]  ${password}
     Click Button  xpath://button[text()=" Login "]  
-    Sleep         5
     Page Should Contain Image       //img[@src="/web/images/orange.png?v=1721393199309"]
     Capture Page Screenshot
 
@@ -26,7 +25,6 @@ Login com user e password correta
     [Tags]  Login
     Aceder à aplicação
     Click Link                      //a[@href="/web/index.php/admin/viewAdminModule"]
-    Sleep                           3
     Element Should Be Visible       //h6[text()="User Management"]
 
 

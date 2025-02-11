@@ -1,94 +1,107 @@
 *** Settings ***
-Library  SeleniumLibrary
-Library  DateTime
-
-
-*** Variables ***
-${url}          https://testautomationpractice.blogspot.com/
-${name}         Noesis Academy
-${email}        noesis@email.pt
-${phone}        967777896
-${adress}       Rua da Noesis
-${username}     standard_user 
-${password}     secret_sauce
-
-*** Keywords ***
-Login site saucedemo
-    Open Browser            https://www.saucedemo.com/  chrome
-    Maximize Browser Window
-    Input Text              //input[@id="user-name"]    ${username}
-    Input Text              //input[@id="password"]     ${password}
-    Click Button            //input[@id="login-button"]
-
-Adicionar item ao carrinho 
-    Click Button            //button[@id="add-to-cart-sauce-labs-bike-light"]
-    Click Element           //div[@id="shopping_cart_container"]/a
-    Element Text Should Be  //div[@class="inventory_item_name"]            Sauce Labs Bike Light
+Library   SeleniumLibrary
+Library   DateTime
+Resource  keyword.resource
+Resource  variables.resource
+Resource  objects.resource
 
 
 *** Test Cases ***
 Preencher todos os campos
     [Tags]                      preencher
-    Open Browser                https://testautomationpractice.blogspot.com/  chrome
+    Open Browser                ${URL_testautomationpractice}   ${browser}
     Maximize Browser Window 
-    Input Text                  //input[@id="name"]         ${name}
-    Input Text                  //input[@id="email"]        ${email}
-    Input Text                  //input[@id="phone"]        ${phone}
-    Input Text                  //textarea[@id="textarea"]  ${adress}
-    Select Radio Button         gender  male
-    Select Checkbox             //input[@id="sunday"]
-    Select Checkbox             //input[@id="friday"]
-    Select Checkbox             //input[@id="wednesday"]
-    Select From List By Value   //select[@id="country"]     canada
-    Select From List By Index   //select[@id="colors"]      2   3
-    Select From List By Label   //select[@id="animals"]     Deer  Elephant  
+    Input Text                  ${locator_name}     ${name}          
+    Input Text                  ${locator_email}    ${email}        
+    Input Text                  ${locator_phone}    ${phone}      
+    Input Text                  ${locator_adress}   ${adress}        
+
+    Select Radio Button         gender  ${gender}
+
+    Select Checkbox             ${locator_days_01}
+    Select Checkbox             ${locator_days_02}
     
+    Select From List By Value    ${locator_country}         ${country}     
+
+    Select From List By Index    ${locator_colors}          ${colors}     
+
+    Select From List By Label    ${locator_sorted_list}     ${sorted_list}     
+    
+
     ${TODAY}   Get Current Date    result_format=%m/%d/%Y
-    Input Text                  //input[@id="datepicker"]       ${TODAY}
-    Click Element               //input[@name="SelectedDate"]
-    Select From List By Value   //select[@data-handler="selectMonth"]      5
-    Select From List By Value   //select[@data-handler="selectYear"]       2015
-    Click Element               //a[@data-date="30"]
-    Input Text                  //input[@id="start-date"]   01/24/2025
-    Input Text                  //input[@id="end-date"]     01/31/2025
+    Input Text                  ${locator_data_picker}       ${TODAY}
+    Click Element               ${locator_select_data}
+    Select From List By Value   ${locator_select_month}       ${month}
+    Select From List By Value   ${locator_year}              ${year} 
+    Click Element               ${locator_day}
+
+    Input Text                  ${locator_start_date}       ${start_date}
+    Input Text                  ${locator_end_date}         ${end_date}
+
     Click Button                //button[@class="submit-btn"]
-    Element Text Should Be      //div[@id="result"]         You selected a range of 7 days.
-    Choose File                 //input[@id="singleFileInput"]          C:\\Noesis_Academy\\Robot_Framework\\test_1.pdf
-    Click Button                //button[text()="Upload Single File"]
-    Choose File                 //input[@id="multipleFilesInput"]       C:\\Noesis_Academy\\Robot_Framework\\test_1.pdf
-    Click Button                //button[text()="Upload Multiple Files"]
-    Capture Page Screenshot
-    Sleep                       5
-    Close Browser
+
+    ${result}   Get Text        ${locator_text}                 
+
+    ${num_dias}    Validar Diferenca Entre Datas   2025/01/24  2025/01/31    #Validar se a diferenca da data no texto é igual das diferenças das datas
+    Should Contain    ${result}    ${num_dias}                               #Validar se a diferenca da data no texto é igual das diferenças das datas
     
+    Element Text Should Be      ${locator_text}         You selected a range of 7 days.
+
+    Choose File                 ${locator_choose_single_file}          ${file}
+    Click Button                ${locator_button_single_file} 
+    Choose File                 ${locator_choose_multiple_files}       ${file}
+    Click Button                ${locator_button_multiple_files}
+    Capture Page Screenshot
+    Close Browser
+
+
+Clicar alertas 
+    [Tags]                      alertas
+    Open Browser                ${URL_testautomationpractice}  ${browser}
+    Maximize Browser Window                   
+    Click Button                ${locator_simple_alert}
+    Handle Alert                ACCEPT
+    Click Button                ${locator_prompt_alert}
+    Input Text Into Alert       teste123    action=LEAVE
+    Sleep                       5
+
 
 Login no site saucedemo
     [Tags]                  login
     Login site saucedemo
-    Element Text Should Be  //div[text()="Swag Labs"]   Swag Labs
-    Sleep                   5
     Close Browser
+
 
 Adicionar um produto ao carrinho no site saucedemo
     [Tags]                  carrinho
     Login site saucedemo
-    Adicionar item ao carrinho 
-    Sleep                   4   
+    Adicionar item ao carrinho
     Close Browser
+
+
+Validar se o carrinho está vazio
+    [Tags]      existe_item
+     Login site saucedemo  
+     Click Link                         ${locator_entrar_carrinho} 
+     Page Should Not Contain Element    ${locator_itens_carrinho}  
+    
+
 
 Eliminar um produto do carrinho no site saucedemo
     [Tags]                  eliminar
     Login site saucedemo
-    Adicionar item ao carrinho
-    Click Button        //button[text()="Remove"]
-    Sleep               3
-    Close Browser
+    Click Button    ${locator_adicionar_item_backpack}          #Adiciona o item ao carrinho
+    Click Button    ${locator_adicionar_item_bikelight}         #Adiciona o item ao carrinho
+    Click Link      ${locator_entrar_carrinho}                  #Entra no carrinho 
 
-Alerts e Popups
-    [Tags]                  alertas
-    Open Browser            https://testautomationpractice.blogspot.com/  chrome
-    Maximize Browser Window 
-    Click Button            //button[@id="alertBtn"]  #Como valido o texto que aparece no popup??
-    Sleep                   5
-    
+    ${existe_item}  Run Keyword And Return Status    Page Should Contain Element   ${locator_itens_carrinho}    #Valida se o item esta no carrinho
+
+    WHILE  ${existe_item}    # Loop = Enquando existir item no carrinho ele ira apagar o primeiro item
+        Click Element    //div[@data-test="inventory-item"][1]//button   #Exclui o item no carrinho
+        ${existe_item}  Run Keyword And Return Status    Page Should Contain Element   ${locator_itens_carrinho}   #Valida se o item esta no carrinho
+    END 
+
+
+
+
 

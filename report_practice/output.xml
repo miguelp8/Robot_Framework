@@ -1,34 +1,52 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<robot generator="Robot 7.2 (Python 3.13.1 on win32)" generated="2025-02-05T12:34:01.474798" rpa="false" schemaversion="5">
+<robot generator="Robot 7.2 (Python 3.13.1 on win32)" generated="2025-02-11T17:28:26.519188" rpa="false" schemaversion="5">
 <suite id="s1" name="Practice" source="C:\Noesis_Academy\Robot_Framework\practice.robot">
-<test id="s1-t1" name="Alerts e Popups" line="87">
+<test id="s1-t1" name="Clicar alertas" line="58">
 <kw name="Open Browser" owner="SeleniumLibrary">
-<msg time="2025-02-05T12:34:01.945433" level="INFO">Opening browser 'chrome' to base url 'https://testautomationpractice.blogspot.com/'.</msg>
-<arg>https://testautomationpractice.blogspot.com/</arg>
-<arg>chrome</arg>
+<msg time="2025-02-11T17:28:28.103012" level="INFO">Opening browser 'chrome' to base url 'https://testautomationpractice.blogspot.com/'.</msg>
+<arg>${URL_testautomationpractice}</arg>
+<arg>${browser}</arg>
 <doc>Opens a new browser instance to the optional ``url``.</doc>
-<status status="PASS" start="2025-02-05T12:34:01.945138" elapsed="5.682444"/>
+<status status="PASS" start="2025-02-11T17:28:28.102378" elapsed="8.696398"/>
 </kw>
 <kw name="Maximize Browser Window" owner="SeleniumLibrary">
 <doc>Maximizes current browser window.</doc>
-<status status="PASS" start="2025-02-05T12:34:07.628791" elapsed="0.245957"/>
+<status status="PASS" start="2025-02-11T17:28:36.804210" elapsed="2.139727"/>
 </kw>
 <kw name="Click Button" owner="SeleniumLibrary">
-<msg time="2025-02-05T12:34:07.894069" level="INFO">Clicking button '//button[@id="alertBtn"]'.</msg>
-<arg>//button[@id="alertBtn"]</arg>
+<msg time="2025-02-11T17:28:38.950214" level="INFO">Clicking button '//button[@id="alertBtn"]'.</msg>
+<arg>${locator_simple_alert}</arg>
 <doc>Clicks the button identified by ``locator``.</doc>
-<status status="PASS" start="2025-02-05T12:34:07.893208" elapsed="0.563172"/>
+<status status="PASS" start="2025-02-11T17:28:38.945802" elapsed="0.157768"/>
+</kw>
+<kw name="Handle Alert" owner="SeleniumLibrary">
+<msg time="2025-02-11T17:28:39.104351" level="INFO">HANDLE::&lt;class 'NoneType'&gt;::None</msg>
+<arg>ACCEPT</arg>
+<doc>Handles the current alert and returns its message.</doc>
+<status status="PASS" start="2025-02-11T17:28:39.104050" elapsed="0.005780"/>
+</kw>
+<kw name="Click Button" owner="SeleniumLibrary">
+<msg time="2025-02-11T17:28:39.111996" level="INFO">Clicking button '//button[@id="promptBtn"]'.</msg>
+<arg>${locator_prompt_alert}</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<status status="PASS" start="2025-02-11T17:28:39.110653" elapsed="0.227075"/>
+</kw>
+<kw name="Input Text Into Alert" owner="SeleniumLibrary">
+<arg>teste123</arg>
+<arg>action=LEAVE</arg>
+<doc>Types the given ``text`` into an input field in an alert.</doc>
+<status status="PASS" start="2025-02-11T17:28:39.342792" elapsed="0.016648"/>
 </kw>
 <kw name="Sleep" owner="BuiltIn">
-<msg time="2025-02-05T12:34:13.457626" level="INFO">Slept 5 seconds.</msg>
+<msg time="2025-02-11T17:28:44.381632" level="INFO">Slept 5 seconds.</msg>
 <arg>5</arg>
 <doc>Pauses the test executed for the given time.</doc>
-<status status="PASS" start="2025-02-05T12:34:08.456921" elapsed="5.000870"/>
+<status status="PASS" start="2025-02-11T17:28:39.379574" elapsed="5.002587"/>
 </kw>
 <tag>alertas</tag>
-<status status="PASS" start="2025-02-05T12:34:01.943790" elapsed="11.514483"/>
+<status status="PASS" start="2025-02-11T17:28:28.100176" elapsed="16.283282"/>
 </test>
-<status status="PASS" start="2025-02-05T12:34:01.478412" elapsed="11.981585"/>
+<status status="PASS" start="2025-02-11T17:28:26.531320" elapsed="17.855677"/>
 </suite>
 <statistics>
 <total>
